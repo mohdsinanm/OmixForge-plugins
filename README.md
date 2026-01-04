@@ -1,6 +1,6 @@
 # OmixForge Plugins
 
-This directory contains plugins for the OmixForge application. You can use these plugins as examples or templates for creating your own extensions.
+This Repo contains plugins for the OmixForge application. You can use these plugins as examples or templates for creating your own extensions.
 
 ## Included Examples
 
