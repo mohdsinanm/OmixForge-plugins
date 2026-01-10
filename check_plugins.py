@@ -3,6 +3,26 @@ import os
 import importlib.util
 from unittest.mock import MagicMock
 
+os.environ["PLUGIN_VERIFY_MODE"] = "1"
+sys.modules["matplotlib"] = MagicMock()
+sys.modules["matplotlib.pyplot"] = MagicMock()
+sys.modules["matplotlib.figure"] = MagicMock()
+sys.modules["matplotlib.backends"] = MagicMock()
+sys.modules["matplotlib.backends.backend_qtagg"] = MagicMock()
+sys.modules["matplotlib.backends.backend_qt5agg"] = MagicMock()
+sys.modules["matplotlib.backends.qt_compat"] = MagicMock()
+
+mock_qt = MagicMock()
+mock_qt.QtCore.QT_VERSION_STR = "6.6.0"
+mock_qt.QtCore.qVersion.return_value = "6.6.0"
+
+sys.modules["PyQt6"] = mock_qt
+sys.modules["PyQt6.QtCore"] = mock_qt.QtCore
+sys.modules["PyQt6.QtWidgets"] = mock_qt.QtWidgets
+sys.modules["PyQt6.QtGui"] = mock_qt.QtGui
+sys.modules["sip"] = MagicMock() 
+
+
 class MockPluginBase:
     def name(self): raise NotImplementedError
     def api_version(self): raise NotImplementedError
@@ -10,22 +30,15 @@ class MockPluginBase:
     def get_widget(self): raise NotImplementedError
     def unload(self): raise NotImplementedError
 
-# Create the mock module structure
-mock_src = MagicMock()
+
 mock_plugin_api = MagicMock()
 mock_plugin_api.PluginBase = MockPluginBase
 mock_plugin_api.API_VERSION = 1
 
-sys.modules["src"] = mock_src
-sys.modules["src.core"] = mock_src.core
-sys.modules["src.core.plugin_manager"] = mock_src.core.plugin_manager
+sys.modules["src"] = MagicMock()
+sys.modules["src.core"] = MagicMock()
+sys.modules["src.core.plugin_manager"] = MagicMock()
 sys.modules["src.core.plugin_manager.plugin_api"] = mock_plugin_api
-
-mock_qt = MagicMock()
-sys.modules["PyQt6"] = mock_qt
-sys.modules["PyQt6.QtWidgets"] = mock_qt.QtWidgets
-sys.modules["PyQt6.QtCore"] = mock_qt.QtCore
-sys.modules["PyQt6.QtGui"] = mock_qt.QtGui
 
 def check_plugin(file_path):
     """

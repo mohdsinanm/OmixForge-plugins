@@ -1,4 +1,4 @@
-PYTHON := python3
+PYTHON := poetry run python
 
 .PHONY : check 
 
