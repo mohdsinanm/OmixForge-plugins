@@ -6,7 +6,7 @@ authors = [
     {name = "mohdsinanm",email = "mohamedysf@bicpu.edu.in"}
 ]
 readme = "README.md"
-requires-python = ">=3.13,<3.14"
+requires-python = ">=3.13,<=3.14"
 dependencies = [
     "pytest (>=8.4.1,<9.0.0)",
     "pyqt6 (>=6.7.0,<7.0.0)",
