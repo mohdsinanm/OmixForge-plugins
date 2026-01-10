@@ -6,6 +6,7 @@ This Repo contains plugins for the OmixForge application. You can use these plug
 
 - **[Calculator](calc.py)**: A fully functional calculator widget demonstrating grid layouts and user interaction.
 - **[Tabbed Plugin](tab_plugin.py)**: Demonstrates how to use a `QTabWidget` to organize content within a plugin.
+- **[Chart Plugin](chart_plugin.py)**: Template for charts 
 
 ---
 
